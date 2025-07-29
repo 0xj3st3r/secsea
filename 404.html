@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0xJ3ST3R — Cybersecurity Engineer</title>
+  <style>
+    /* Base styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0d0d0d;
+      color: #33ff33;
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    a { color: #00ff00; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Frosted glass panels, adjusted width */
+    header, section, footer {
+      background: rgba(13, 13, 13, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      position: relative;
+      z-index: 1;
+      margin: 2rem auto;
+      max-width: 700px;
+      padding: 2rem 1.5rem;
+    }
+    header {
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 1rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #00ff00;
+    }
+    header p {
+      font-size: 1.1rem;
+      margin: 0.5rem 0 1rem;
+    }
+    nav {
+      margin-bottom: 1.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    section {
+      padding: 2rem 1.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 1px solid #33ff33;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
+      color: #00ff00;
+    }
+    ul { list-style: none; padding-left: 0; }
+    /* Lists with bullets */
+    ul.experience, ul.education-list, ul.certifications-list { list-style: disc; margin-left: 1.5rem; }
+    ul.experience ul { list-style: circle; margin-left: 1.5rem; }
+    .skills li, .tools li { margin-bottom: 0.4rem; }
+    .contact a { display: inline-block; margin-right: 1.5rem; }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: #555;
+    }
+    /* Matrix background */
+    canvas#bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <header>
+	<h1>404</h1>
+  </header>
+
+  <footer>
+    <p>Designed & coded with 💻 and ☕ by 0xJ3ST3R</p>
+  </footer>
+
+  <script>
+    // Matrix rain script
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    const columns = Math.floor(canvas.width / 16);
+    const drops = Array(columns).fill(1);
+    function draw() {
+      ctx.fillStyle = 'rgba(13,13,13,0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#33ff33';
+      ctx.font = '16px monospace';
+      for (let i = 0; i < drops.length; i++) {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(text, i * 16, drops[i] * 16);
+        if (drops[i] * 16 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 50);
+  </script>
+</body>
+</html>
